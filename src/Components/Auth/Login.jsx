@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import useHook from "./Hooks/Hooks";
 import { UseLoginContext } from "../Context/LoginContext";
 import { useNavigate } from "react-router-dom";
+import { Form, Button, Container } from 'react-bootstrap';
 
 const Login = () => {
     const navegar = useNavigate();
@@ -28,38 +29,36 @@ const Login = () => {
     };
 
     return (
-        <>
-            <div>
-                <h2>Inicio sesión</h2>
-                <form action="" onSubmit={onLogin}>
-                    <div>
-                        <label htmlFor="correo">Correo Electrónico</label>
-                        <input
-                            type="text"
-                            name="correo"
-                            autoComplete="off"
-                            value={correo}
-                            onChange={(e) => setCorreo(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="contrasena">Contraseña</label>
-                        <input
-                            type="password"
-                            name="contrasena"
-                            autoComplete="off"
-                            value={contrasena}
-                            onChange={(e) => setContrasena(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <button type="submit">Acceder</button>
-                    </div>
-                </form>
-            </div>
-        </>
+        <Container className="mt-5" style={{ maxWidth: '400px' }}>
+            <h2 className="text-center mb-4">Inicio de Sesión</h2>
+            <Form onSubmit={onLogin}>
+                <Form.Group className="mb-3" controlId="formCorreoLogin">
+                    <Form.Label>Correo Electrónico</Form.Label>
+                    <Form.Control
+                        type="email"
+                        placeholder="Introduce tu correo"
+                        value={correo}
+                        onChange={(e) => setCorreo(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formContrasenaLogin">
+                    <Form.Label>Contraseña</Form.Label>
+                    <Form.Control
+                        type="password"
+                        placeholder="Introduce tu contraseña"
+                        value={contrasena}
+                        onChange={(e) => setContrasena(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+
+                <Button variant="primary" type="submit" className="w-100">
+                    Acceder
+                </Button>
+            </Form>
+        </Container>
     );
 };
 
